@@ -12,7 +12,7 @@
 
 
 /* OCP1 Backup Radio        5v, formerly 3v3
- * OCP2 Radio               5v, formerly 3v3
+ * OCP2 Radio               5v, formerly 3v3          rails have since been changed need to change this 
  * OCP3 Camera OCP          5v
  * OCP4 FLight MCU          3v3
  * OCP5 GPS                 3v3
