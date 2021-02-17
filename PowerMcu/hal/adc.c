@@ -16,7 +16,7 @@ void adc_init()
 {
 	ADC10AE0 |= BIT7;
 	ADC10CTL0 &= ~ENC;      // Disable ADC.
-	ADC10CTL0 = SREF_1      // VR+ = VREF+, VR- = VSS.
+	ADC10CTL0 = SREF_1      // VR+ = VREF+, VR- = VSS. Maybe should be SREF_0 as Vref+ used for Analog input.
 			| ADC10SHT_3    // Sample-and-hold time 64x ADC10CLKs.
 			| ADC10SR       // Decrease reference buffer capability to reduce current.
 			| REFON         // Reference output on.
