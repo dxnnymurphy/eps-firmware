@@ -13,6 +13,6 @@
 uint16_t sense_get(uint8_t channel)
 {
 	mux_select(channel);
-	return adc_convert(INCH_7);
+	return adc_convert(INCH_7);  
 }
 
