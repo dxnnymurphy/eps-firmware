@@ -28,28 +28,28 @@ inline uint8_t map_from_port(uint8_t straight);
 
 static volatile uint8_t switchFlags;
 
-void switches_init()        //What PSIN hold when direction is set to out
+void switches_init()        /*What PSIN hold when direction is set to out */
 {
     //Setting top bit to output as it is unused and this prevents a floating input, reducing power consumption was  switched off state
     //Switches rails off, 2nd top bit is interrupt
-    PSDIR = 0xBF;
-    PSOUT = 0;
-    PSIE = PSMASK | BIT6;     //Whether flags are switched on for a pin
-    PSIES = 0xFF;      //Setting flags to falling
+    PSDIR = 0xBF; /*10111111 sets all as output, first bit as output too as shown above*/
+    PSOUT = 0; /* switches rails off*/
+    PSIE = PSMASK | BIT6;     /* flags OR BIT6 is 01000000 (all off)*/
+    PSIES = 0xFF;      /* 11111111 sets flags to falling */
 	switchFlags = 0;
 }
 
 uint8_t switches_get()
 {
-	return map_from_port(PSIN);
+	return map_from_port(PSIN); /*reads statuses through p1in */
 }
 
 uint8_t switches_get_direction()
 {
-	return map_from_port(PSDIR);
+	return map_from_port(PSDIR); /* gets current on/off status for rails */
 }
 
-void switches_set_direction(uint8_t mask)   //The direction i.e. whether the rails are set to be on or off by the mcu (no dependancy on overcurrent protection)
+void switches_set_direction(uint8_t mask)   /*The direction i.e. whether the rails are set to be on or off by the mcu (no dependancy on overcurrent protection*/
 {
 	PSDIR = map_to_port(mask);
 }
